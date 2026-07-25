@@ -502,6 +502,43 @@ p { color: var(--text-muted); }
 /* ==========================================================================
    REDUCED MOTION
    ========================================================================== */
+/* ==========================================================================
+   NOTA DE CIFRAS DE EJEMPLO (hero)
+   ========================================================================== */
+.stats-note { font-size: .68rem; color: var(--text-faint); margin-top: .8rem; max-width: 480px; }
+
+/* ==========================================================================
+   REVEAL ON SCROLL
+   El estado oculto solo aplica cuando <html> tiene .js-anim (lo añade el
+   script del <head> únicamente con IntersectionObserver disponible y SIN
+   prefers-reduced-motion). Sin JS o con reduced motion, todo queda visible.
+   Mantener la lista de selectores sincronizada con revealSelector del script.
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  .js-anim .section-head,
+  .js-anim .card,
+  .js-anim .diff-item,
+  .js-anim .step,
+  .js-anim .steps-cta,
+  .js-anim .faq-item,
+  .js-anim .info-row,
+  .js-anim .map-card,
+  .js-anim .promo-note,
+  .js-anim .hero-copy > *,
+  .js-anim .hero-visual,
+  .js-anim .final-cta .container > * { opacity: 0; }
+
+  .js-anim .reveal-in {
+    animation: reveal-rise .65s cubic-bezier(.22, .61, .36, 1) both;
+    animation-delay: var(--reveal-delay, 0s);
+  }
+
+  @keyframes reveal-rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: none; }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .001ms !important; animation-iteration-count: 1 !important;
@@ -509,6 +546,19 @@ p { color: var(--text-muted); }
   }
 }
 </style>
+<script>
+/* Activa las animaciones de entrada SOLO si el navegador soporta
+   IntersectionObserver y el usuario no pidió reducir el movimiento.
+   Corre antes del primer render para evitar parpadeos. */
+(function () {
+  try {
+    if ('IntersectionObserver' in window &&
+        !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('js-anim');
+    }
+  } catch (e) { /* sin animación: la página queda visible por defecto */ }
+}());
+</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Saltar al contenido principal</a>
@@ -543,7 +593,7 @@ p { color: var(--text-muted); }
       </ul>
     </nav>
 
-    <a href="https://wa.me/" target="_blank" rel="noopener" class="btn btn-whatsapp btn-sm header-cta" onclick="demoWhatsApp(event,'agendar tu cita')" aria-label="Agendar cita por WhatsApp">
+    <a href="https://wa.me/525525268475" target="_blank" rel="noopener" class="btn btn-whatsapp btn-sm header-cta" onclick="demoWhatsApp(event,'agendar tu cita')" aria-label="Agendar cita por WhatsApp">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.005c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2zm5.8 14.13c-.24.68-1.4 1.33-1.93 1.4-.5.07-1.11.1-1.79-.11-.41-.13-.94-.3-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.15-1.53-1.15-2.92s.72-2.07.98-2.35c.26-.28.56-.35.75-.35.19 0 .38 0 .54.01.18.01.41-.07.64.49.24.58.81 1.99.88 2.14.07.14.11.31.02.5-.09.19-.14.31-.27.48-.14.16-.29.37-.41.49-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.61-.07.16-.19.7-.81.89-1.09.19-.28.37-.23.63-.14.26.09 1.66.78 1.94.93.28.14.47.21.53.33.07.12.07.68-.17 1.36z"/></svg>
       <span>Agenda tu cita</span>
     </a>
@@ -562,7 +612,7 @@ p { color: var(--text-muted); }
       <a class="nav-link" href="#testimonios">Testimonios</a>
       <a class="nav-link" href="#faq">FAQ</a>
       <a class="nav-link" href="#ubicacion">Ubicación</a>
-      <a href="https://wa.me/" target="_blank" rel="noopener" class="btn btn-whatsapp btn-block" onclick="demoWhatsApp(event,'agendar tu cita')">
+      <a href="https://wa.me/525525268475" target="_blank" rel="noopener" class="btn btn-whatsapp btn-block" onclick="demoWhatsApp(event,'agendar tu cita')">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.005c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2zm5.8 14.13c-.24.68-1.4 1.33-1.93 1.4-.5.07-1.11.1-1.79-.11-.41-.13-.94-.3-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.15-1.53-1.15-2.92s.72-2.07.98-2.35c.26-.28.56-.35.75-.35.19 0 .38 0 .54.01.18.01.41-.07.64.49.24.58.81 1.99.88 2.14.07.14.11.31.02.5-.09.19-.14.31-.27.48-.14.16-.29.37-.41.49-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.61-.07.16-.19.7-.81.89-1.09.19-.28.37-.23.63-.14.26.09 1.66.78 1.94.93.28.14.47.21.53.33.07.12.07.68-.17 1.36z"/></svg>
         <span>Agenda tu cita</span>
       </a>
@@ -583,7 +633,7 @@ p { color: var(--text-muted); }
         <h1>Tu auto en manos expertas, <span>sin sorpresas</span> en la cuenta</h1>
         <p class="lead">Frenos, suspensión, afinación y diagnóstico computarizado, con cotización clara antes de tocar tu auto. Agenda tu cita en minutos por WhatsApp.</p>
         <div class="hero-actions">
-          <a href="https://wa.me/" target="_blank" rel="noopener" class="btn btn-whatsapp" onclick="demoWhatsApp(event,'agendar tu cita')">
+          <a href="https://wa.me/525525268475" target="_blank" rel="noopener" class="btn btn-whatsapp" onclick="demoWhatsApp(event,'agendar tu cita')">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.005c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2zm5.8 14.13c-.24.68-1.4 1.33-1.93 1.4-.5.07-1.11.1-1.79-.11-.41-.13-.94-.3-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.15-1.53-1.15-2.92s.72-2.07.98-2.35c.26-.28.56-.35.75-.35.19 0 .38 0 .54.01.18.01.41-.07.64.49.24.58.81 1.99.88 2.14.07.14.11.31.02.5-.09.19-.14.31-.27.48-.14.16-.29.37-.41.49-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.61-.07.16-.19.7-.81.89-1.09.19-.28.37-.23.63-.14.26.09 1.66.78 1.94.93.28.14.47.21.53.33.07.12.07.68-.17 1.36z"/></svg>
             <span>Agendar por WhatsApp</span>
           </a>
@@ -595,17 +645,18 @@ p { color: var(--text-muted); }
         <div class="hero-stats">
           <div class="stat">
             <span class="stat-num">15+</span>
-            <span class="stat-label">Años de experiencia</span>
+            <span class="stat-label">Años de experiencia (ejemplo)</span>
           </div>
           <div class="stat">
             <span class="stat-num">3,000+</span>
-            <span class="stat-label">Autos atendidos</span>
+            <span class="stat-label">Autos atendidos (ejemplo)</span>
           </div>
           <div class="stat">
             <span class="stat-num">4.8<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9L5.7 21l1.7-7-5.4-4.7 7.1-.6z"/></svg></span>
-            <span class="stat-label">Calificación (referencial)</span>
+            <span class="stat-label">Calificación (ejemplo)</span>
           </div>
         </div>
+        <p class="stats-note">* Cifras ilustrativas de esta demo. No son datos reales del negocio; se sustituirán por los datos verificados del taller.</p>
       </div>
 
       <div class="hero-visual">
@@ -658,7 +709,7 @@ p { color: var(--text-muted); }
           <p>Revisión de balatas, discos, líquido de frenos y calibración. Tu seguridad es lo primero al pisar el pedal.</p>
           <div class="card-foot">
             <span class="tag-chip">Seguridad</span>
-            <a href="https://wa.me/" target="_blank" rel="noopener" class="cotiza" onclick="demoWhatsApp(event,'cotizar el servicio de frenos')">
+            <a href="https://wa.me/525525268475" target="_blank" rel="noopener" class="cotiza" onclick="demoWhatsApp(event,'cotizar el servicio de frenos')">
               Cotizar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg>
             </a>
           </div>
@@ -672,7 +723,7 @@ p { color: var(--text-muted); }
           <p>Amortiguadores, rótulas y terminales revisados a detalle para un manejo suave, estable y seguro.</p>
           <div class="card-foot">
             <span class="tag-chip">Manejo</span>
-            <a href="https://wa.me/" target="_blank" rel="noopener" class="cotiza" onclick="demoWhatsApp(event,'cotizar el servicio de suspensión')">
+            <a href="https://wa.me/525525268475" target="_blank" rel="noopener" class="cotiza" onclick="demoWhatsApp(event,'cotizar el servicio de suspensión')">
               Cotizar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg>
             </a>
           </div>
@@ -686,7 +737,7 @@ p { color: var(--text-muted); }
           <p>Bujías, filtros, aceite y ajuste general para que tu motor arranque mejor, rinda más y contamine menos.</p>
           <div class="card-foot">
             <span class="tag-chip">Rendimiento</span>
-            <a href="https://wa.me/" target="_blank" rel="noopener" class="cotiza" onclick="demoWhatsApp(event,'cotizar una afinación')">
+            <a href="https://wa.me/525525268475" target="_blank" rel="noopener" class="cotiza" onclick="demoWhatsApp(event,'cotizar una afinación')">
               Cotizar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg>
             </a>
           </div>
@@ -700,7 +751,7 @@ p { color: var(--text-muted); }
           <p>Escaneo con equipo especializado para detectar fallas ocultas del motor y la electrónica antes de que crezcan.</p>
           <div class="card-foot">
             <span class="tag-chip">Tecnología</span>
-            <a href="https://wa.me/" target="_blank" rel="noopener" class="cotiza" onclick="demoWhatsApp(event,'agendar un diagnóstico computarizado')">
+            <a href="https://wa.me/525525268475" target="_blank" rel="noopener" class="cotiza" onclick="demoWhatsApp(event,'agendar un diagnóstico computarizado')">
               Cotizar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg>
             </a>
           </div>
@@ -714,7 +765,7 @@ p { color: var(--text-muted); }
           <p>Aceite y filtros de calidad recomendados para tu modelo, alargando la vida útil de tu motor.</p>
           <div class="card-foot">
             <span class="tag-chip">Mantenimiento</span>
-            <a href="https://wa.me/" target="_blank" rel="noopener" class="cotiza" onclick="demoWhatsApp(event,'cotizar cambio de aceite')">
+            <a href="https://wa.me/525525268475" target="_blank" rel="noopener" class="cotiza" onclick="demoWhatsApp(event,'cotizar cambio de aceite')">
               Cotizar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg>
             </a>
           </div>
@@ -728,7 +779,7 @@ p { color: var(--text-muted); }
           <p>Mayor duración de tus llantas y un volante que va derecho, sin jaloneos ni vibraciones.</p>
           <div class="card-foot">
             <span class="tag-chip">Precisión</span>
-            <a href="https://wa.me/" target="_blank" rel="noopener" class="cotiza" onclick="demoWhatsApp(event,'cotizar alineación y balanceo')">
+            <a href="https://wa.me/525525268475" target="_blank" rel="noopener" class="cotiza" onclick="demoWhatsApp(event,'cotizar alineación y balanceo')">
               Cotizar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg>
             </a>
           </div>
@@ -744,7 +795,7 @@ p { color: var(--text-muted); }
         <span class="eyebrow">Nosotros</span>
         <h2 class="section-title">¿Por qué elegir Taller Rodríguez?</h2>
         <div class="rule"></div>
-        <p class="section-sub">Casi dos décadas atendiendo autos en Huixquilucan con un principio simple: explicarte todo antes de cobrarte algo.</p>
+        <p class="section-sub">Atendiendo autos en Huixquilucan con un principio simple: explicarte todo antes de cobrarte algo.</p>
       </div>
 
       <div class="grid grid-diff">
@@ -798,7 +849,7 @@ p { color: var(--text-muted); }
           </div>
           <h3>Afinación + Diagnóstico</h3>
           <p>Incluye afinación completa y escaneo computarizado en una sola visita, a precio preferencial.</p>
-          <a href="https://wa.me/" target="_blank" rel="noopener" class="btn btn-outline btn-sm" onclick="demoWhatsApp(event,'preguntar por la promoción de afinación más diagnóstico')">Preguntar por esta promo</a>
+          <a href="https://wa.me/525525268475" target="_blank" rel="noopener" class="btn btn-outline btn-sm" onclick="demoWhatsApp(event,'preguntar por la promoción de afinación más diagnóstico')">Preguntar por esta promo</a>
         </article>
 
         <article class="card promo-card">
@@ -808,7 +859,7 @@ p { color: var(--text-muted); }
           </div>
           <h3>Revisión de frenos sin costo</h3>
           <p>Al contratar cualquier servicio mayor, revisamos tus frenos sin costo adicional.</p>
-          <a href="https://wa.me/" target="_blank" rel="noopener" class="btn btn-outline btn-sm" onclick="demoWhatsApp(event,'preguntar por la revisión de frenos gratis')">Preguntar por esta promo</a>
+          <a href="https://wa.me/525525268475" target="_blank" rel="noopener" class="btn btn-outline btn-sm" onclick="demoWhatsApp(event,'preguntar por la revisión de frenos gratis')">Preguntar por esta promo</a>
         </article>
 
         <article class="card promo-card">
@@ -818,7 +869,7 @@ p { color: var(--text-muted); }
           </div>
           <h3>10% en tu primera visita</h3>
           <p>Descuento de bienvenida para clientes nuevos en cualquier servicio de mantenimiento.</p>
-          <a href="https://wa.me/" target="_blank" rel="noopener" class="btn btn-outline btn-sm" onclick="demoWhatsApp(event,'preguntar por el descuento de primera visita')">Preguntar por esta promo</a>
+          <a href="https://wa.me/525525268475" target="_blank" rel="noopener" class="btn btn-outline btn-sm" onclick="demoWhatsApp(event,'preguntar por el descuento de primera visita')">Preguntar por esta promo</a>
         </article>
       </div>
       <p class="promo-note">* Promociones referenciales para fines de demostración, sujetas a confirmación y vigencia por parte del negocio.</p>
@@ -854,7 +905,7 @@ p { color: var(--text-muted); }
           </div>
         </div>
         <div class="steps-cta">
-          <a href="https://wa.me/" target="_blank" rel="noopener" class="btn btn-whatsapp" onclick="demoWhatsApp(event,'agendar tu cita ahora')">
+          <a href="https://wa.me/525525268475" target="_blank" rel="noopener" class="btn btn-whatsapp" onclick="demoWhatsApp(event,'agendar tu cita ahora')">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.005c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2zm5.8 14.13c-.24.68-1.4 1.33-1.93 1.4-.5.07-1.11.1-1.79-.11-.41-.13-.94-.3-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.15-1.53-1.15-2.92s.72-2.07.98-2.35c.26-.28.56-.35.75-.35.19 0 .38 0 .54.01.18.01.41-.07.64.49.24.58.81 1.99.88 2.14.07.14.11.31.02.5-.09.19-.14.31-.27.48-.14.16-.29.37-.41.49-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.61-.07.16-.19.7-.81.89-1.09.19-.28.37-.23.63-.14.26.09 1.66.78 1.94.93.28.14.47.21.53.33.07.12.07.68-.17 1.36z"/></svg>
             <span>Agendar mi cita ahora</span>
           </a>
@@ -997,8 +1048,8 @@ p { color: var(--text-muted); }
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/><circle cx="12" cy="10" r="2.3"/></svg>
             </div>
             <div>
-              <h4>Dirección referencial</h4>
-              <p>Av. Jesús del Monte 254, Interlomas, 52764 Huixquilucan de Degollado, Edo. Méx. <br><span class="placeholder">(Dirección exacta sujeta a validación)</span></p>
+              <h4>Zona de servicio (referencial)</h4>
+              <p>Zona Interlomas, Huixquilucan, Estado de México. <br><span class="placeholder">(Ubicación ficticia de esta demo: no corresponde a un domicilio real. La versión final mostrará la dirección verificada del taller)</span></p>
             </div>
           </div>
           <div class="info-row">
@@ -1015,11 +1066,11 @@ p { color: var(--text-muted); }
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .6 3a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c1 .3 2 .5 3 .6a2 2 0 0 1 1.7 2z"/></svg>
             </div>
             <div>
-              <h4>Teléfono referencial</h4>
-              <p>55-XXXX-XXXX <br><span class="placeholder">(Número por confirmar)</span></p>
+              <h4>Teléfono de contacto (demo)</h4>
+              <p><a href="tel:+525525268475">+52 55 2526 8475</a> <br><span class="placeholder">(Número oficial de ASCK Software, autor de esta demostración. La versión final usará el teléfono del taller)</span></p>
             </div>
           </div>
-          <a href="https://maps.google.com/?q=Av.+Jesus+del+Monte+254+Interlomas+Huixquilucan" target="_blank" rel="noopener" class="btn btn-accent btn-sm">
+          <a href="https://maps.google.com/?q=Interlomas,+Huixquilucan" target="_blank" rel="noopener" class="btn btn-accent btn-sm">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 20l-5.5 2V6L9 4m0 16l6 2m-6-2V4m6 18l5.5-2V4L15 2m0 18V2m0 2 6-2v16l-6 2"/></svg>
             <span>Cómo llegar</span>
           </a>
@@ -1042,7 +1093,7 @@ p { color: var(--text-muted); }
       <h2>Tu presencia digital puede verse así</h2>
       <p>Una solución profesional para Taller Rodríguez: tus servicios, promociones y agenda por WhatsApp en un solo lugar, accesible desde cualquier celular.</p>
       <div class="final-actions">
-        <a href="https://wa.me/" target="_blank" rel="noopener" class="btn btn-whatsapp" onclick="demoWhatsApp(event,'agendar tu cita')">
+        <a href="https://wa.me/525525268475" target="_blank" rel="noopener" class="btn btn-whatsapp" onclick="demoWhatsApp(event,'agendar tu cita')">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.005c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2zm5.8 14.13c-.24.68-1.4 1.33-1.93 1.4-.5.07-1.11.1-1.79-.11-.41-.13-.94-.3-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.15-1.53-1.15-2.92s.72-2.07.98-2.35c.26-.28.56-.35.75-.35.19 0 .38 0 .54.01.18.01.41-.07.64.49.24.58.81 1.99.88 2.14.07.14.11.31.02.5-.09.19-.14.31-.27.48-.14.16-.29.37-.41.49-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.61-.07.16-.19.7-.81.89-1.09.19-.28.37-.23.63-.14.26.09 1.66.78 1.94.93.28.14.47.21.53.33.07.12.07.68-.17 1.36z"/></svg>
           <span>Agendar por WhatsApp</span>
         </a>
@@ -1073,7 +1124,7 @@ p { color: var(--text-muted); }
         <div>
           <h5>Contacto</h5>
           <ul>
-            <li><a href="https://wa.me/" target="_blank" rel="noopener" onclick="demoWhatsApp(event,'escribir por WhatsApp')">WhatsApp</a></li>
+            <li><a href="https://wa.me/525525268475" target="_blank" rel="noopener" onclick="demoWhatsApp(event,'escribir por WhatsApp')">WhatsApp</a></li>
             <li><a href="#ubicacion">Ubicación</a></li>
           </ul>
         </div>
@@ -1097,7 +1148,7 @@ p { color: var(--text-muted); }
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
     <span>Servicios</span>
   </a>
-  <a href="https://wa.me/" target="_blank" rel="noopener" class="tab-cta" onclick="demoWhatsApp(event,'agendar tu cita')" aria-label="Agendar por WhatsApp">
+  <a href="https://wa.me/525525268475" target="_blank" rel="noopener" class="tab-cta" onclick="demoWhatsApp(event,'agendar tu cita')" aria-label="Agendar por WhatsApp">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.005c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2zm5.8 14.13c-.24.68-1.4 1.33-1.93 1.4-.5.07-1.11.1-1.79-.11-.41-.13-.94-.3-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.15-1.53-1.15-2.92s.72-2.07.98-2.35c.26-.28.56-.35.75-.35.19 0 .38 0 .54.01.18.01.41-.07.64.49.24.58.81 1.99.88 2.14.07.14.11.31.02.5-.09.19-.14.31-.27.48-.14.16-.29.37-.41.49-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.61-.07.16-.19.7-.81.89-1.09.19-.28.37-.23.63-.14.26.09 1.66.78 1.94.93.28.14.47.21.53.33.07.12.07.68-.17 1.36z"/></svg>
   </a>
   <a href="#ubicacion">
@@ -1125,12 +1176,69 @@ p { color: var(--text-muted); }
     });
   });
 
+  /* CTA de WhatsApp de la demo: abre el WhatsApp oficial de ASCK Software
+     (autor de la demo) con un mensaje que se identifica como demostración.
+     En la versión final se sustituye por el número real del taller. */
+  var ASCK_WHATSAPP = '525525268475';
   window.demoWhatsApp = function (event, accion) {
     if (event && event.preventDefault) { event.preventDefault(); }
-    var texto = 'Demo ASCK Software: en la versión final, este botón abre WhatsApp directo con Taller Rodríguez para ' + (accion || 'escribirte') + '. En esta demo no se envía ningún mensaje real.';
-    window.alert(texto);
+    var mensaje = 'Hola, ASCK Software. Estoy viendo la demo "Taller Rodríguez" y me interesa ' +
+      (accion || 'escribirles') + '. [Mensaje enviado desde la demo: el taller es ficticio; ' +
+      'en la versión final este botón contactará al negocio real.]';
+    window.open('https://wa.me/' + ASCK_WHATSAPP + '?text=' + encodeURIComponent(mensaje), '_blank', 'noopener');
     return false;
   };
+
+  /* Animación de entrada al scroll (sobria).
+     Solo corre si el <html> tiene .js-anim: lo añade el script del <head>
+     únicamente cuando hay IntersectionObserver y NO hay prefers-reduced-motion.
+     Mantener la lista de selectores sincronizada con el bloque CSS "REVEAL ON SCROLL". */
+  if (document.documentElement.classList.contains('js-anim') && window.location.hash) {
+    /* Deep link a un ancla (#servicios, #ubicacion...): mostrar todo de
+       inmediato para garantizar que la sección enlazada nunca quede oculta. */
+    document.documentElement.classList.remove('js-anim');
+  }
+  if (document.documentElement.classList.contains('js-anim')) {
+    try {
+      var revealSelector = [
+        '.section-head', '.card', '.diff-item', '.step', '.steps-cta',
+        '.faq-item', '.info-row', '.map-card', '.promo-note',
+        '.hero-copy > *', '.hero-visual', '.final-cta .container > *'
+      ].join(', ');
+      var revealTargets = Array.prototype.slice.call(document.querySelectorAll(revealSelector));
+      var io = new IntersectionObserver(function (entries) {
+        var order = 0;
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) { return; }
+          entry.target.style.setProperty('--reveal-delay', Math.min(order * 70, 420) + 'ms');
+          entry.target.classList.add('reveal-in');
+          io.unobserve(entry.target);
+          order++;
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+      revealTargets.forEach(function (el) { io.observe(el); });
+
+      /* Red de seguridad: si estando visible no se reveló nada tras cargar
+         (IO sin entregar callbacks: prerender, entornos raros), se desactiva
+         la animación y todo el contenido queda visible. En navegadores
+         normales el hero se revela al instante y esto nunca actúa. */
+      var revealFallback = function () {
+        if (document.visibilityState !== 'visible') { return; }
+        window.setTimeout(function () {
+          if (!document.querySelector('.reveal-in')) {
+            io.disconnect();
+            document.documentElement.classList.remove('js-anim');
+          }
+        }, 1800);
+      };
+      window.addEventListener('load', revealFallback);
+      document.addEventListener('visibilitychange', revealFallback);
+      revealFallback();
+    } catch (err) {
+      /* Ante cualquier fallo, restaurar visibilidad total. */
+      document.documentElement.classList.remove('js-anim');
+    }
+  }
 }());
 </script>
 </body>
