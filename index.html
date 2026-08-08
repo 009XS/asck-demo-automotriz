@@ -147,7 +147,9 @@ p { color: var(--text-muted); }
 .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border-strong); }
 .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 .btn-block { width: 100%; }
-.btn-sm { padding: .6rem 1.1rem; font-size: .85rem; }
+/* min-height 44px: varios .btn-sm son enlaces a WhatsApp y se quedaban en 35px
+   de alto, por debajo del minimo tactil comodo en movil. */
+.btn-sm { padding: .6rem 1.1rem; font-size: .85rem; min-height: 44px; }
 
 /* ==========================================================================
    TOP DISCLAIMER BANNER
@@ -328,6 +330,10 @@ p { color: var(--text-muted); }
 }
 .service-card .card-foot .cotiza {
   font-size: .8rem; font-weight: 700; color: var(--accent-2); display: inline-flex; align-items: center; gap: .35rem;
+  /* Es el enlace a WhatsApp de cada servicio: sin padding medía 65x20 y en un
+     celular casi no se puede pulsar. El margen negativo compensa el padding
+     para que el pie de la tarjeta no cambie de alto. */
+  min-height: 44px; padding: .75rem .5rem; margin: -.75rem -.5rem;
 }
 .service-card .card-foot .cotiza svg { width: 14px; height: 14px; }
 .tag-chip {
