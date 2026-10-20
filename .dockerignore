@@ -1,4 +1,6 @@
-AUDITORIA.md
+node_modules
+dist
+.git
 .gitignore
 .dockerignore
-.git
+AUDITORIA.md
