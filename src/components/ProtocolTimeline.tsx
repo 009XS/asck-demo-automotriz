@@ -10,6 +10,7 @@ interface ProtocolStep {
   description: string
   specs: string[]
   icon: React.ReactNode
+  image: string
 }
 
 const STEPS: ProtocolStep[] = [
@@ -20,7 +21,8 @@ const STEPS: ProtocolStep[] = [
     title: 'Escaneo y Mapeo Micrométrico',
     description: 'Diagnóstico científico del estado de la laca. Medimos el espesor de pintura en 24 puntos del vehículo con medidor magnético digital Elcometer para garantizar que la corrección no comprometa la capa transparente.',
     specs: ['Medidor Elcometer 456 digital', 'Mapeo de 24 puntos de carrocería', 'Reporte fotográfico macro de defectos'],
-    icon: <Microscope className="w-6 h-6 text-cyan-400" />
+    icon: <Microscope className="w-6 h-6 text-cyan-400" />,
+    image: '/assets/images/kronos_slider_before.jpg'
   },
   {
     step: '02',
@@ -29,7 +31,8 @@ const STEPS: ProtocolStep[] = [
     title: 'Lavado Técnico de Tres Fases',
     description: 'Descontaminación química de lluvia ácida y sales minerales mediante baño de espuma de nieve pH neutro. Descontaminado de partículas ferrosas de freno con reactivo químico y barra de arcilla ultra fina.',
     specs: ['Espuma de nieve Gyeon Foam pH neutro', 'Descontaminante férrico reactivo', 'Método de 2 cubetas con filtros Grit Guard'],
-    icon: <Sparkles className="w-6 h-6 text-cyan-400" />
+    icon: <Sparkles className="w-6 h-6 text-cyan-400" />,
+    image: '/assets/images/kronos_ceramic_beading.jpg'
   },
   {
     step: '03',
@@ -38,7 +41,8 @@ const STEPS: ProtocolStep[] = [
     title: 'Pulido Micrométrico en 3 Pasos',
     description: 'Eliminación permanente del 95% de microrrayas, marcas circulares (swirls) y oxidación. Trabajamos con pulidoras orbitales alemanas e italianas y pastas con óxido de aluminio puro sin siliconas ni rellenadores.',
     specs: ['Pulidoras Rupes BigFoot LHR21 Mark III', 'Pastas abrasivas Menzerna Germany', 'Cero rellenos cosméticos (resultados reales)'],
-    icon: <Flame className="w-6 h-6 text-amber-400" />
+    icon: <Flame className="w-6 h-6 text-amber-400" />,
+    image: '/assets/images/kronos_slider_after.jpg'
   },
   {
     step: '04',
@@ -47,7 +51,8 @@ const STEPS: ProtocolStep[] = [
     title: 'Aplicación Cerámica 9H o PPF',
     description: 'Instalación de película autorregenerativa PPF en zonas de impacto o aplicación manual de recubrimiento cerámico de cuarzo grado 9H. Curado térmico acelerado mediante lámparas infrarrojas a 60°C.',
     specs: ['Dureza 9H certificada por laboratorio', 'Curado infrarrojo de onda corta', 'Garantía escrita de 3 a 5 años'],
-    icon: <Shield className="w-6 h-6 text-emerald-400" />
+    icon: <Shield className="w-6 h-6 text-emerald-400" />,
+    image: '/assets/images/kronos_ppf_installation.jpg'
   },
   {
     step: '05',
@@ -56,7 +61,8 @@ const STEPS: ProtocolStep[] = [
     title: 'Túnel de Inspección & Entrega',
     description: 'Revisión final bajo cabina de luz de 18 luminarias LED de 6,500 Kelvin con índice de reproducción cromática CRI 98+. El vehículo se entrega sellado, sanitizado y con certificado digital de garantía.',
     specs: ['Inspección bajo 6,500K CRI 98+', 'Certificado digital transferible', 'Kit de mantenimiento inicial de cortesía'],
-    icon: <Eye className="w-6 h-6 text-cyan-400" />
+    icon: <Eye className="w-6 h-6 text-cyan-400" />,
+    image: '/assets/images/kronos_light_tunnel.jpg'
   }
 ]
 
@@ -112,29 +118,41 @@ export const ProtocolTimeline: React.FC = () => {
             {STEPS.map((step, idx) => (
               <div
                 key={step.step}
-                className="w-[320px] sm:w-[440px] bg-[#161A22] border border-slate-800 p-6 sm:p-8 flex flex-col justify-between relative group hover:border-cyan-500/50 transition-all duration-300 shadow-xl"
+                className="w-[320px] sm:w-[440px] bg-[#161A22] border border-slate-800 p-5 sm:p-7 flex flex-col justify-between relative group hover:border-cyan-500/50 transition-all duration-300 shadow-xl overflow-hidden"
               >
+                {/* Visual Step Banner */}
+                <div className="relative w-full h-36 bg-black border border-slate-800/80 overflow-hidden mb-5">
+                  <img
+                    src={step.image}
+                    alt={step.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85 group-hover:opacity-100"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#161A22] via-[#161A22]/30 to-transparent"></div>
+                  
+                  {/* Step Badge Over Image */}
+                  <div className="absolute top-2.5 left-2.5 px-2 py-0.5 bg-black/80 backdrop-blur-xs border border-cyan-500/40 text-cyan-400 font-mono-tech text-[10px] uppercase tracking-wider">
+                    FASE // {step.step}
+                  </div>
+                </div>
+
                 {/* Top Step & Time */}
                 <div>
-                  <div className="flex items-center justify-between pb-4 border-b border-slate-800">
-                    <div className="flex items-center gap-3">
-                      <span className="font-mono-tech text-2xl font-bold text-cyan-400">
-                        {step.step}
-                      </span>
-                      <span className="font-mono-tech text-[10px] text-slate-400 tracking-widest uppercase">
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono-tech text-[10px] text-cyan-400 tracking-widest uppercase font-semibold">
                         {step.eyebrow}
                       </span>
                     </div>
-                    <div className="p-2 bg-slate-900 border border-slate-800 rounded-sm">
+                    <div className="p-1.5 bg-slate-900 border border-slate-800 rounded-sm">
                       {step.icon}
                     </div>
                   </div>
 
                   {/* Title & Desc */}
-                  <h3 className="font-display font-bold text-xl sm:text-2xl uppercase mt-5 text-white tracking-tight">
+                  <h3 className="font-display font-bold text-lg sm:text-xl uppercase mt-3.5 text-white tracking-tight">
                     {step.title}
                   </h3>
-                  <p className="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed font-light">
+                  <p className="mt-2 text-xs sm:text-sm text-slate-400 leading-relaxed font-light">
                     {step.description}
                   </p>
                 </div>

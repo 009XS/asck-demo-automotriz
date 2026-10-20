@@ -25,7 +25,7 @@ export const ZONES: BlueprintZone[] = [
       { label: 'Insumo Homologado', val: 'Gyeon Q² Mohs+ / Menzerna' },
       { label: 'Curado Térmico', val: 'Infrarrojo 60°C en Cabina' }
     ],
-    imagePreview: '/assets/images/kronos_paint_correction_split.jpg',
+    imagePreview: '/assets/images/kronos_slider_after.jpg',
     time: '24 - 48 hrs',
     warranty: '3 a 5 Años Escrita',
     hotspot: { x: 34, y: 56 } // Hood & front bumper on exploded view

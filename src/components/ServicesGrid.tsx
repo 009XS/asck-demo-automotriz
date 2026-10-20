@@ -18,7 +18,7 @@ const SERVICES: ServiceItem[] = [
     code: 'SVC-01 // ARMOR',
     title: 'Paint Protection Film (PPF)',
     tagline: 'Blindaje físico autoregenerativo contra impactos de autopista',
-    image: '/assets/images/kronos_paint_correction_split.jpg',
+    image: '/assets/images/kronos_ppf_installation.jpg',
     bullets: [
       'Poliuretano termoplástico de 200 micras (8 mils)',
       'Autocuración de microrrayas con calor ambiental',
@@ -32,7 +32,7 @@ const SERVICES: ServiceItem[] = [
     code: 'SVC-02 // QUARTZ',
     title: 'Recubrimiento Cerámico 9H',
     tagline: 'Nanotecnología de cuarzo puro con brillo espejo permanente',
-    image: '/assets/images/kronos_light_tunnel.jpg',
+    image: '/assets/images/kronos_ceramic_beading.jpg',
     bullets: [
       'Dureza superficial 9H certificada en laboratorio',
       'Hidrofobicidad extrema con ángulo de contacto > 118°',
@@ -88,7 +88,7 @@ const SERVICES: ServiceItem[] = [
     code: 'SVC-06 // AUDIT',
     title: 'Auditoría en Túnel de Luz 6,500K',
     tagline: 'Inspección óptica de 18 arcos LED bajo índice CRI 98+',
-    image: '/assets/images/kronos_blueprint_gt.jpg',
+    image: '/assets/images/kronos_light_tunnel.jpg',
     bullets: [
       'Detección de microrrayas bajo luz rasante de precisión',
       'Cabina cerrada con filtración de aire HEPA H14',

@@ -98,21 +98,37 @@ export const Hero: React.FC<HeroProps> = ({ onExploreBlueprint, onOpenIntake }) 
                 <div className="w-96 h-96 rounded-full border border-cyan-500/20 absolute"></div>
               </div>
 
-              {/* Real Transparent Glowing CAD Blueprint */}
-              <img
-                src="/assets/images/kronos_blueprint_transparent.png"
-                alt="Blueprint CAD Porsche 911 GT3 KRONOS"
-                className="w-full h-full object-contain relative z-0 transition-transform duration-700 group-hover:scale-105"
-              />
+              {/* Masterpiece Studio Porsche 911 GT3 RS Visual Display */}
+              <div className="relative w-full aspect-16/10 bg-[#0A0C10] border border-slate-800 shadow-2xl overflow-hidden group">
+                
+                {/* Laser Scanning Line Animation */}
+                <div className="absolute inset-y-0 w-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-75 animate-[scan_3.5s_ease-in-out_infinite] pointer-events-none z-10"></div>
 
-              {/* Floating Live Telemetry Chips */}
-              <div className="absolute top-3 left-3 px-2 py-1 bg-black/80 border border-cyan-500/40 text-cyan-400 font-mono-tech text-[9px] uppercase tracking-wider backdrop-blur-xs flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
-                <span>PORSCHE GT-CHASSIS // EXPLODED CAD</span>
-              </div>
+                {/* Studio Hero Image */}
+                <img
+                  src="/assets/images/kronos_hero_studio_gt3.jpg"
+                  alt="Porsche 911 GT3 RS en Estudio KRONOS Precision"
+                  className="w-full h-full object-cover relative z-0 transition-transform duration-700 group-hover:scale-105"
+                />
 
-              <div className="absolute bottom-3 right-3 px-2 py-1 bg-black/80 border border-slate-800 text-slate-400 font-mono-tech text-[9px] uppercase tracking-wider backdrop-blur-xs">
-                CALIBRACIÓN DE SUPERFICIE OK
+                {/* Gradient vignette edges */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none"></div>
+
+                {/* Floating Live Telemetry Chips */}
+                <div className="absolute top-3 left-3 px-2.5 py-1 bg-black/85 border border-cyan-500/50 text-cyan-300 font-mono-tech text-[10px] uppercase tracking-wider backdrop-blur-xs flex items-center gap-2 shadow-lg">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
+                  <span>911 GT3 RS (992) // KRONOS STUDIO UNIT #01</span>
+                </div>
+
+                <div className="absolute top-3 right-3 px-2 py-1 bg-black/80 border border-slate-700 text-emerald-400 font-mono-tech text-[9px] uppercase tracking-wider backdrop-blur-xs flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  <span>CALIBRACIÓN OK</span>
+                </div>
+
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[9px] font-mono-tech text-slate-400 px-3 py-1.5 bg-black/80 backdrop-blur-xs border border-slate-800">
+                  <span className="text-slate-300">ESTUDIO BOSQUES · CABINA DE FLUJO LAMINAR</span>
+                  <span className="text-cyan-400 font-bold">100% CERO HOLOGRAMAS</span>
+                </div>
               </div>
             </div>
           </div>

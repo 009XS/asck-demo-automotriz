@@ -1,10 +1,23 @@
-import React, { useState, useRef, useCallback } from 'react'
+import React, { useState, useRef, useCallback, useEffect } from 'react'
 import { Sparkles, Shield, ArrowLeftRight, CheckCircle2 } from 'lucide-react'
 
 export const PaintSplitSlider: React.FC = () => {
   const [sliderPosition, setSliderPosition] = useState(50)
   const [isDragging, setIsDragging] = useState(false)
+  const [containerWidth, setContainerWidth] = useState<number>(0)
   const containerRef = useRef<HTMLDivElement>(null)
+
+  const updateWidth = useCallback(() => {
+    if (containerRef.current) {
+      setContainerWidth(containerRef.current.offsetWidth)
+    }
+  }, [])
+
+  useEffect(() => {
+    updateWidth()
+    window.addEventListener('resize', updateWidth)
+    return () => window.removeEventListener('resize', updateWidth)
+  }, [updateWidth])
 
   const handleMove = useCallback((clientX: number) => {
     if (!containerRef.current) return
@@ -55,31 +68,34 @@ export const PaintSplitSlider: React.FC = () => {
             onTouchMove={handleTouchMove}
             className="relative w-full aspect-16/9 select-none overflow-hidden border border-slate-300 shadow-2xl cursor-ew-resize bg-black"
           >
-            {/* Background Full Image: Complete After view (Clean / Corrected) */}
+            {/* Background Full Image: 100% Optically Corrected Liquid Mirror */}
             <img
-              src="/assets/images/kronos_paint_correction_split.jpg"
-              alt="Corrección óptica de pintura KRONOS"
+              src="/assets/images/kronos_slider_after.jpg"
+              alt="Pintura corregida ópticamente con acabado espejo cerámico 9H KRONOS"
               className="absolute inset-0 w-full h-full object-cover pointer-events-none"
             />
 
-            {/* Left Image: Clipped version with filter to emphasize the untreated swirl side */}
+            {/* Foreground Clipped Image: Original Paint with Swirls and Scratches */}
             <div
-              className="absolute inset-0 overflow-hidden"
+              className="absolute inset-y-0 left-0 overflow-hidden"
               style={{ width: `${sliderPosition}%` }}
             >
-              <img
-                src="/assets/images/kronos_paint_correction_split.jpg"
-                alt="Pintura con microrrayas y swirls antes del tratamiento"
-                className="absolute inset-0 w-full h-full object-cover max-w-none pointer-events-none"
-                style={{ width: containerRef.current ? `${containerRef.current.offsetWidth}px` : '100%' }}
-              />
-              {/* Subtle tint overlay on before side */}
-              <div className="absolute inset-0 bg-red-950/15 pointer-events-none"></div>
+              <div
+                className="relative h-full"
+                style={{ width: containerWidth ? `${containerWidth}px` : '100%' }}
+              >
+                <img
+                  src="/assets/images/kronos_slider_before.jpg"
+                  alt="Pintura original con microrrayas, hologramas y pérdida de brillo"
+                  className="absolute inset-0 w-full h-full object-cover max-w-none pointer-events-none"
+                  style={{ width: containerWidth ? `${containerWidth}px` : '100%' }}
+                />
+              </div>
 
               {/* Tag Label: ANTES */}
               <div className="absolute top-4 left-4 z-10 px-3 py-1 bg-[#0F1115]/90 text-white font-mono-tech text-xs uppercase tracking-wider border border-slate-700 backdrop-blur-xs flex items-center gap-1.5 shadow-md">
                 <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
-                <span>ORIGINAL // SWIRLS & OPACIDAD</span>
+                <span>ORIGINAL // SWIRLS & MICRORRAYAS</span>
               </div>
             </div>
 
