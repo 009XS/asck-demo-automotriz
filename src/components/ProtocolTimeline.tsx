@@ -87,8 +87,8 @@ export const ProtocolTimeline: React.FC = () => {
   return (
     <section id="protocolo" ref={targetRef} className="relative h-[300vh] bg-[#0F1115] text-white">
       
-      {/* Sticky viewport container */}
-      <div className="sticky top-0 h-screen flex flex-col justify-between overflow-hidden py-12 sm:py-16">
+      {/* Sticky viewport container (offset for sticky header) */}
+      <div className="sticky top-16 h-[calc(100vh-64px)] flex flex-col justify-between overflow-hidden pt-6 pb-8 sm:pt-8 sm:pb-10">
         
         {/* Section Header */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 shrink-0">
