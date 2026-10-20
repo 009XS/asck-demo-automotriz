@@ -17,12 +17,12 @@ const SERVICES: ServiceItem[] = [
     id: 'ppf',
     code: 'SVC-01 // ARMOR',
     title: 'Paint Protection Film (PPF)',
-    tagline: 'Blindaje físico autoregenerativo contra impactos en autopista',
+    tagline: 'Blindaje físico autoregenerativo contra impactos de autopista',
     image: '/assets/images/kronos_paint_correction_split.jpg',
     bullets: [
-      'Poliuretano termoplástico 200 micras (8 mils)',
-      'Autocuración de micro-rayas con el calor ambiental',
-      'Corte milimétrico por plotter sin navajas sobre carrocería'
+      'Poliuretano termoplástico de 200 micras (8 mils)',
+      'Autocuración de microrrayas con calor ambiental',
+      'Corte milimétrico por plotter sin navajas sobre laca'
     ],
     warranty: '7 a 10 Años Escrita',
     priceFrom: 'Desde $18,500 MXN'
@@ -32,11 +32,11 @@ const SERVICES: ServiceItem[] = [
     code: 'SVC-02 // QUARTZ',
     title: 'Recubrimiento Cerámico 9H',
     tagline: 'Nanotecnología de cuarzo puro con brillo espejo permanente',
-    image: '/assets/images/kronos_paint_correction_split.jpg',
+    image: '/assets/images/kronos_light_tunnel.jpg',
     bullets: [
-      'Dureza certificada 9H anti-rayas leves',
+      'Dureza superficial 9H certificada en laboratorio',
       'Hidrofobicidad extrema con ángulo de contacto > 118°',
-      'Protección química contra lluvia ácida y desechos'
+      'Resistencia química severa contra lluvia ácida y desechos'
     ],
     warranty: '3 a 5 Años Escrita',
     priceFrom: 'Desde $7,900 MXN'
@@ -44,11 +44,11 @@ const SERVICES: ServiceItem[] = [
   {
     id: 'rines',
     code: 'SVC-03 // WHEELS',
-    title: 'Rines, Calipers & Frenos',
+    title: 'Rines Forjados, Calipers & Frenos',
     tagline: 'Tratamiento cerámico térmico y descontaminación a 800°C',
     image: '/assets/images/kronos_wheel_caliper.jpg',
     bullets: [
-      'Descontaminación química de polvo de balata quemado',
+      'Descontaminación química de polvo de balata horneado',
       'Sellado cerámico de alta temperatura Gyeon Q² Rim',
       'Torqueado con torquímetro digital calibrado Snap-on'
     ],
@@ -56,46 +56,46 @@ const SERVICES: ServiceItem[] = [
     priceFrom: 'Desde $3,800 MXN'
   },
   {
-    id: 'tunel',
-    code: 'SVC-04 // OPTICS',
-    title: 'Túnel de Inspección & Entrega',
-    tagline: 'Auditoría óptica de 18 arcos LED bajo 6,500K CRI 98+',
-    image: '/assets/images/kronos_light_tunnel.jpg',
+    id: 'interiores',
+    code: 'SVC-04 // CABIN',
+    title: 'Spa de Cuero Nappa & Alcántara',
+    tagline: 'Nutrición artesanal de piel mate sin brillos grasos artificiales',
+    image: '/assets/images/kronos_interior_leather.jpg',
     bullets: [
-      'Detección de microrrayas bajo luz rasante de precisión',
-      'Cabina con filtración de aire HEPA H14 grado médico',
-      'Certificado digital transferible por número de serie VIN'
+      'Insumos alemanes Colourlock homologados para Singer/Porsche',
+      'Escudo cerámico anti-transferencia de mezclilla en piel clara',
+      'Desinfección por termonebulización de ozono grado médico'
     ],
-    warranty: 'Auditoría Certificada',
-    priceFrom: 'Incluido en Servicios'
+    warranty: 'Mate Original Garantizado',
+    priceFrom: 'Desde $4,200 MXN'
   },
   {
     id: 'mecanica',
     code: 'SVC-05 // POWERTRAIN',
     title: 'Mecánica Fina & Diagnóstico',
     tagline: 'Mantenimiento preventivo sin tolerancias para autos deportivos',
-    image: '/assets/images/kronos_blueprint_dark_transparent.png',
+    image: '/assets/images/kronos_engine_bay.jpg',
     bullets: [
-      'Fluidos 100% sintéticos Motul 300V / Liqui Moly',
-      'Escaneo con scanner oficial OEM Autel MaxiSys',
-      'Limpieza criogénica de bahía de motor sin agua'
+      'Fluidos 100% sintéticos Motul 300V / Liqui Moly Racing',
+      'Escaneo con scanner oficial OEM Autel MaxiSys Ultra',
+      'Limpieza criogénica de bahía de motor y plenum de carbono'
     ],
     warranty: '12 Meses / 20,000 km',
     priceFrom: 'Presupuesto a la Medida'
   },
   {
-    id: 'interiores',
-    code: 'SVC-06 // CABIN',
-    title: 'Spa de Cuero Nappa & Alcántara',
-    tagline: 'Nutrición y protección mate original sin brillos grasos',
-    image: '/assets/images/kronos_blueprint_dark_transparent.png',
+    id: 'tunel',
+    code: 'SVC-06 // AUDIT',
+    title: 'Auditoría en Túnel de Luz 6,500K',
+    tagline: 'Inspección óptica de 18 arcos LED bajo índice CRI 98+',
+    image: '/assets/images/kronos_blueprint_gt.jpg',
     bullets: [
-      'Insumos alemanes Colourlock certificados',
-      'Escudo cerámico anti-transferencia de mezclilla',
-      'Desinfección por termonebulización de ozono'
+      'Detección de microrrayas bajo luz rasante de precisión',
+      'Cabina cerrada con filtración de aire HEPA H14',
+      'Certificado digital transferible por número de serie VIN'
     ],
-    warranty: 'Mate Original Garantizado',
-    priceFrom: 'Desde $4,200 MXN'
+    warranty: 'Auditoría Certificada',
+    priceFrom: 'Incluido en Servicios'
   }
 ]
 
@@ -128,20 +128,20 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({ onOpenIntake }) => {
           {SERVICES.map((service) => (
             <div
               key={service.id}
-              className="bg-white border border-slate-200 flex flex-col justify-between hover:border-slate-400 hover:shadow-lg transition-all duration-300 group overflow-hidden"
+              className="bg-white border border-slate-200 flex flex-col justify-between hover:border-slate-400 hover:shadow-xl transition-all duration-300 group overflow-hidden"
             >
               <div>
                 {/* Visual Image Header */}
-                <div className="relative w-full h-48 bg-slate-900 overflow-hidden">
+                <div className="relative w-full h-52 bg-slate-900 overflow-hidden">
                   <img
                     src={service.image}
                     alt={service.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
                   
                   {/* Top code badge */}
-                  <div className="absolute top-3 left-3 px-2 py-0.5 bg-black/80 text-cyan-400 font-mono-tech text-[9px] uppercase tracking-wider border border-slate-800">
+                  <div className="absolute top-3 left-3 px-2 py-0.5 bg-black/80 text-cyan-400 font-mono-tech text-[9px] uppercase tracking-wider border border-slate-800 backdrop-blur-xs">
                     {service.code}
                   </div>
 

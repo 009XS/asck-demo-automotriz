@@ -8,7 +8,7 @@ import { ProtocolTimeline } from './components/ProtocolTimeline'
 import { ServicesGrid } from './components/ServicesGrid'
 import { IntakeQuoteModal } from './components/IntakeQuoteModal'
 import { Footer } from './components/Footer'
-import { Send } from 'lucide-react'
+import { Send, CheckCircle2 } from 'lucide-react'
 
 export const App: React.FC = () => {
   const [selectedZones, setSelectedZones] = useState<string[]>(['carroceria'])
@@ -41,7 +41,7 @@ export const App: React.FC = () => {
         selectedCount={selectedZones.length}
       />
 
-      {/* 02. Hero with Floating 3D CAD Blueprint & Telemetry */}
+      {/* 02. Hero with CAD Exploded Blueprint & Real Telemetry */}
       <Hero
         onExploreBlueprint={scrollToBlueprint}
         onOpenIntake={() => handleOpenIntakeWithService()}
@@ -50,7 +50,7 @@ export const App: React.FC = () => {
       {/* 03. Interactive Before/After Paint Split-Slider */}
       <PaintSplitSlider />
 
-      {/* 04. CAD Blueprint 360° Inspection Studio */}
+      {/* 04. CAD Blueprint 360° Inspection Studio (Dark Workstation Terminal) */}
       <VehicleBlueprint
         selectedZones={selectedZones}
         onToggleZone={handleToggleZone}
@@ -63,32 +63,32 @@ export const App: React.FC = () => {
       {/* 06. 5-Stage Pinned Horizontal Scroll Sequence */}
       <ProtocolTimeline />
 
-      {/* 07. Visual Services Catalog with Real Imagery */}
+      {/* 07. Visual Services Catalog with Unique Dedicated Imagery */}
       <ServicesGrid onOpenIntake={handleOpenIntakeWithService} />
 
       {/* 08. Footer with Certifications and Laboratory Hours */}
       <Footer />
 
-      {/* Floating Bottom Action Bar */}
+      {/* Sleek Non-Intrusive Floating Action Pill (Docked bottom-right) */}
       {selectedZones.length > 0 && (
-        <div className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 z-30 animate-in fade-in slide-in-from-bottom-4 duration-300">
-          <div className="bg-[#0F1115] text-white px-5 py-3.5 border border-slate-700 shadow-2xl flex items-center gap-4 sm:gap-6">
+        <div className="fixed bottom-6 right-6 z-40 animate-in fade-in slide-in-from-bottom-3 duration-300">
+          <div className="bg-[#0F1115]/95 backdrop-blur-md text-white px-4 py-2.5 border border-cyan-500/40 shadow-2xl flex items-center gap-3">
             <div className="flex items-center gap-2">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
               </span>
-              <span className="font-mono-tech text-xs tracking-wider uppercase">
-                {selectedZones.length} {selectedZones.length === 1 ? 'Zona Seleccionada' : 'Zonas Seleccionadas'}
+              <span className="font-mono-tech text-[11px] tracking-wider uppercase text-slate-300">
+                {selectedZones.length} {selectedZones.length === 1 ? 'Zona' : 'Zonas'}
               </span>
             </div>
 
             <button
               onClick={() => handleOpenIntakeWithService()}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-[#0F1115] font-mono-tech text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-cyan-500 hover:bg-cyan-400 text-[#0F1115] font-mono-tech text-[11px] font-bold uppercase tracking-wider transition-colors cursor-pointer"
             >
-              <Send className="w-3.5 h-3.5" />
-              <span>Cotizar en WhatsApp</span>
+              <Send className="w-3 h-3" />
+              <span>Cotizar</span>
             </button>
           </div>
         </div>
